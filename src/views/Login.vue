@@ -1,67 +1,63 @@
 <template>
-  <div class="container">
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
-      <div class="login-title">用户登录</div>
-      <el-form-item label="" prop="username">
-        <el-input prefix-icon="el-icon-date" size="large" type="username" v-model="ruleForm.username" placeholder="用户名" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="" prop="password">
-        <el-input prefix-icon="el-icon-date" size="large" show-password="true" type="password" v-model="ruleForm.password" placeholder="密码" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" :loading="loading" @click="submitForm('ruleForm')">提交</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+  <div class="flex-fill d-flex flex-column justify-content-center py-4 container">
+      <div class="container-tight py-6">
+        <form class="card card-md" action="." method="get" autocomplete="off">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">用户登录</h2>
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input type="email" class="form-control" placeholder="Enter email">
+            </div>
+            <div class="mb-2">
+              <label class="form-label">
+                Password
+              </label>
+              <div class="input-group input-group-flat">
+                <input type="password" class="form-control"  placeholder="Password"  autocomplete="off">
+                <span class="input-group-text">
+                  <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label class="form-check">
+                <input type="checkbox" class="form-check-input"/>
+                <span class="form-check-label">Remember me on this device</span>
+              </label>
+            </div>
+            <div class="form-footer">
+              <button type="submit" @click="submitLogin" class="btn btn-primary w-100">登录</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
 </template>
 
 <script>
+import { login } from '../api/login'
+import { setToken } from '../api/cookie'
 
 export default {
   name: 'login',
   data () {
-    const validateName = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入用户名'))
-      } else {
-        if (this.ruleForm.username !== '') {
-          this.$ref.ruleForm.validateField('username')
-        }
-        callback()
-      }
-    }
-    const validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'))
-      } else {
-        if (this.ruleForm.password !== '') {
-          this.$ref.ruleForm.validateField('password')
-        }
-        callback()
-      }
-    }
     return {
       loading: false,
-      ruleForm: {
+      loginForm: {
         username: '',
         password: ''
-      },
-      rules: {
-        username: [
-          { validator: validateName, trigger: 'blur' }
-        ],
-        password: [
-          { validator: validatePass, trigger: 'blur' }
-        ]
       }
     }
   },
   methods: {
-    submitForm () {
-      console.log('登录')
-      // this.loading = !this.loading
-      // this.$store.dispatch()
-      this.$message.error('错误消息')
+    submitLogin () {
+      login(this.loginForm.username, this.loginForm.password).then((res) => {
+        this.$message.success('登录成功')
+        setToken('x-auth-token', res.data)
+        this.$router.push('/console')
+      })
     }
   }
 }
@@ -70,23 +66,6 @@ export default {
 <style scoped lang="scss">
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background: #242f42;
-  .login-title {
-    text-align: center;
-    font-size: 2rem;
-    color: #ffffff;
-    margin-bottom: 32px;
-  }
-  .demo-ruleForm {
-    width: 400px !important;
-    min-width: 400px !important;
-  }
-}
-
-.el-button {
-  width: 100%;
 }
 </style>
