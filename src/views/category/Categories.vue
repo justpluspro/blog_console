@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import category from '../../api/category'
+import { getCategoryList, saveCategory, deleteCategory } from '../../api/category'
 export default {
   name: 'Categories',
   data () {
@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted () {
-    category.getCategoryList()
+    getCategoryList()
     if (this.$store.state.categoryList.length === 0) {
       this.$store.dispatch('getCategoryList')
     } else {
@@ -64,23 +64,35 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch('deleteCategory', obj.id).then(() => {
+        deleteCategory(obj.id).then(() => {
           this.$message({
             type: 'success',
             message: '删除分类成功!'
           })
         })
+        // this.$store.dispatch('deleteCategory', obj.id).then(() => {
+        //   this.$message({
+        //     type: 'success',
+        //     message: '删除分类成功!'
+        //   })
+        // })
       })
     },
     handleSave () {
       this.dialogFormVisible = false
       console.log(JSON.stringify(this.category))
-      this.$store.dispatch('addCategory', this.category).then(() => {
+      saveCategory(this.category).then(() => {
         this.$message({
           type: 'success',
           message: '新增分类成功'
         })
       })
+      // this.$store.dispatch('addCategory', this.category).then(() => {
+      //   this.$message({
+      //     type: 'success',
+      //     message: '新增分类成功'
+      //   })
+      // })
     },
     closeDialog () {
       this.dialogFormVisible = false
