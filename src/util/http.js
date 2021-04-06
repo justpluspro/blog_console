@@ -1,6 +1,8 @@
 import axios from 'axios'
 // import { setToken, getToken } from '../api/cookie'
-import { getToken } from '../api/cookie'
+import { getToken } from './cookie'
+import { Message } from 'element-ui'
+import router from '../router/index'
 
 const httpClient = axios.create({
   baseURL: 'http://localhost:8188/',
@@ -17,7 +19,12 @@ httpClient.interceptors.request.use(function (config) {
 
   const token = getToken('x-auth-token')
   if (token === undefined || token === '') {
-    this.$message.error('授权失败')
+    Message({
+      message: '授权失败',
+      type: 'error',
+      duration: 5000
+    })
+    router.push('/login')
   }
 
   return config
@@ -27,7 +34,8 @@ httpClient.interceptors.request.use(function (config) {
 
 // 拦截器，请求之后拦截
 httpClient.interceptors.response.use(function (response) {
-  return response
+  // 这里直接返回数据
+  return response.data
 }, function (error) {
   return Promise.reject(error)
 })

@@ -21,12 +21,12 @@
     <el-dialog title="新增/编辑分类" :visible.sync="dialogFormVisible">
       <el-form :model="category">
         <el-form-item label="分类名称" :label-width="formLabelWidth">
-          <el-input v-model="category.name" autocomplete="off"></el-input>
+          <el-input v-model="category.name" size="small" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="closeDialog">取 消</el-button>
-        <el-button type="primary" @click="handleSave">确 定</el-button>
+        <el-button size="small" @click="closeDialog">取 消</el-button>
+        <el-button type="primary" size="small" @click="handleSave">确 定</el-button>
       </div>
     </el-dialog>
   </div>

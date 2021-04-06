@@ -10,7 +10,8 @@ import Login from '../views/Login.vue'
 import Files from '../views/files/Files'
 import Config from '../views/configs/Config'
 import Console from '../views/Console'
-import { getToken } from '../api/cookie'
+import Error from '../views/404'
+// import { getToken } from '../api/cookie'
 
 Vue.use(VueRouter)
 
@@ -65,15 +66,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '*',
+    name: '404',
+    component: Error
   }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({
@@ -82,15 +80,18 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  console.log('router beforeEach: ' + to.path)
-  if (to.path === '/api/token' && !to.path.includes('/api')) {
-    const token = getToken('x-auth-token')
-    if (token === null || token === undefined || token === '') {
-      // 缺少 token 就跳转到 login
-      next('/login')
-    }
-  }
-})
+/**
+ * 路由守卫
+ */
+// router.beforeEach((to, from, next) => {
+//   console.log('router beforeEach: ' + to.path)
+//   if (to.path === '/api/token' && !to.path.includes('/api')) {
+//     const token = getToken('x-auth-token')
+//     if (token === null || token === undefined || token === '') {
+//       // 缺少 token 就跳转到 login
+//       next('/login')
+//     }
+//   }
+// })
 
 export default router

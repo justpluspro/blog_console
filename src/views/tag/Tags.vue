@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import tag from '../../api/tag'
+import { getTagList, saveTag, deleteTag, updateTag } from '../../api/tag'
 export default {
   name: 'Tags',
   data () {
@@ -56,7 +56,9 @@ export default {
     }
   },
   mounted () {
-    tag.getTagList()
+    getTagList().then((res) => {
+      this.tags = res.data
+    })
     // http.get('api/tags').then(res => {
     //   // console.log(res.data.data)
     //   this.tags = res.data.data
@@ -65,31 +67,35 @@ export default {
   },
   methods: {
     handleQuery: function () {
+      saveTag()
       // http.get('api/tag?query=' + this.query).then(res => {
       //   this.categories = res.data
       // })
     },
     handleEdit: function (obj) {
+      updateTag()
       // this.category.id = obj.id
       // this.dialogFormVisible = true
       // this.category.name = obj.name
     },
     handleDelete: function (obj) {
-      // this.$confirm('此操作将删除标签, 是否继续?', '提示', {
-      //   confirmButtonText: '确定',
-      //   cancelButtonText: '取消',
-      //   type: 'warning'
-      // }).then(() => {
-      //   this.$message({
-      //     type: 'success',
-      //     message: '删除成功!'
-      //   })
-      // }).catch(() => {
-      //   this.$message({
-      //     type: 'info',
-      //     message: '已取消删除'
-      //   })
-      // })
+      this.$confirm('此操作将删除标签, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteTag(obj).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     },
     handleSave () {
       // this.dialogFormVisible = false

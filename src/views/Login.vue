@@ -1,44 +1,23 @@
 <template>
-  <div class="flex-fill d-flex flex-column justify-content-center py-4 container">
-      <div class="container-tight py-6">
-        <form class="card card-md" action="." method="get" autocomplete="off">
-          <div class="card-body">
-            <h2 class="card-title text-center mb-4">用户登录</h2>
-            <div class="mb-3">
-              <label class="form-label">Email address</label>
-              <input type="email" class="form-control" placeholder="Enter email">
-            </div>
-            <div class="mb-2">
-              <label class="form-label">
-                Password
-              </label>
-              <div class="input-group input-group-flat">
-                <input type="password" class="form-control"  placeholder="Password"  autocomplete="off">
-                <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
-                  </a>
-                </span>
-              </div>
-            </div>
-            <div class="mb-2">
-              <label class="form-check">
-                <input type="checkbox" class="form-check-input"/>
-                <span class="form-check-label">Remember me on this device</span>
-              </label>
-            </div>
-            <div class="form-footer">
-              <button type="submit" @click="submitLogin" class="btn btn-primary w-100">登录</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+  <div class="container">
+      <el-form :model="loginForm" :rules="rules" ref="loginForm">
+        <h1 style="text-align: center; color: white; margin-bottom: 48px;">用户登录</h1>
+        <el-form-item prop="username">
+          <el-input type="text" v-model="loginForm.username" placeholder="用户名" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input v-model="loginForm.password" type="password" placeholder="密码"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" style="display: inline-block" @click="submitForm('loginForm')">提交</el-button>
+        </el-form-item>
+      </el-form>
+  </div>
 </template>
 
 <script>
 import { login } from '../api/login'
-import { setToken } from '../api/cookie'
+import { setToken } from '../util/cookie'
 
 export default {
   name: 'login',
@@ -48,15 +27,32 @@ export default {
       loginForm: {
         username: '',
         password: ''
+      },
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 3, max: 16, message: '长度在 3 到 16 个字符之间', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 18, message: '长度在 6 到 18 个字符之间', trigger: 'blur' }
+        ]
       }
     }
   },
   methods: {
-    submitLogin () {
-      login(this.loginForm.username, this.loginForm.password).then((res) => {
-        this.$message.success('登录成功')
-        setToken('x-auth-token', res.data)
-        this.$router.push('/console')
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          console.log('验证成功')
+          login(this.loginForm.username, this.loginForm.password).then((res) => {
+            this.$message.success('登录成功')
+            setToken('x-auth-token', res.data)
+            this.$router.push('/console/articles')
+          })
+        } else {
+          return false
+        }
       })
     }
   }
@@ -66,6 +62,21 @@ export default {
 <style scoped lang="scss">
 .container {
   display: flex;
+  justify-content: center; // 水平居中
+  align-items: center; // 垂直居中
   height: 100vh;
+  background-color: #2f4256;
+
+  .el-input__inner {
+    background-color: transparent;
+    height: 47px !important;
+    line-height: 47px !important;
+    padding: 32px;
+  }
 }
+
+.el-form {
+  min-width: 500px;
+}
+
 </style>
