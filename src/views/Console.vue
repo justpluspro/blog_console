@@ -8,7 +8,7 @@
                background-color="#2f4256" text-color="#fff"
         active-text-color="#ffd04b">
         <el-menu-item index="/console/articles">
-          <i class="el-icon-setting"></i>
+          <i class="el-icon-box"></i>
           <span slot="title">文章列表</span>
         </el-menu-item>
         <el-menu-item index="/console/moments">
@@ -38,15 +38,17 @@
       </el-menu>
     </el-aside>
     <el-container>
-      <el-header style="text-align: right; font-size: 12px">
-        <el-menu class="el-menu-demo" mode="horizontal">
+      <el-header class="custom-header">
+        <el-menu mode="horizontal">
           <el-menu-item>
             <i class="el-icon-folder-add" @click="collapse = !collapse"></i>
           </el-menu-item>
         </el-menu>
       </el-header>
       <el-main>
-        <router-view />
+        <div class="__custom-main">
+          <router-view />
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -65,20 +67,42 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.logo {
-  height: 60px;
-  width: 100%;
-  line-height: 60px;
-  font-size: 2rem;
-  text-align: center;
-}
 .el-header {
-  padding: 0 !important;
+  position: fixed;
+  display: flex;
+  width: 100%;
+  left: 200px;
+  height: 50px;
+  line-height: 50px;
+}
+.el-aside {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
 }
 .el-main {
-  padding: 16px;
+  padding: 8px !important;
+  position: fixed;
+  left: 200px;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  background-color: #eeeeee !important;
+  overflow-y: scroll;
 }
 .el-menu {
-  border-right: none !important;
+  border-right: none;
+}
+.__custom-main {
+  margin-bottom: 50px !important;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.custom-header {
+  border-bottom: 1px solid #eeeeee !important;
 }
 </style>
