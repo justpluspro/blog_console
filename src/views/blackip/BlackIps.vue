@@ -24,6 +24,7 @@
     </el-table>
     <!-- 分页 -->
     <el-pagination
+      class="__custom-pagination"
       layout="prev, pager, next"
       background
       prev-text="上一页"
@@ -31,7 +32,7 @@
       @current-change="toPage"
       :total="pageInfo.totalRows">
     </el-pagination>
-    <el-dialog z-index="1000" title="新增黑名单" :visible.sync="dialogFormVisible">
+    <el-dialog z-index="19930928" title="新增黑名单" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="ip地址" label-width="120px">
           <el-input v-model="form.ip" auto-complete="off"></el-input>
@@ -67,10 +68,10 @@ export default {
     }
   },
   mounted () {
-    this.initData()
+    this.loadData()
   },
   methods: {
-    initData () {
+    loadData () {
       getBlackIps(this.queryParam).then(res => {
         this.datalist = res.data
         this.pageInfo.totalRows = res.totalRows
@@ -81,7 +82,7 @@ export default {
     },
     saveBlackIp () {
       saveBlackIp(this.form).then(() => {
-        this.initData()
+        this.loadData()
         this.dialogFormVisible = false
         this.form.ip = ''
         this.$message.success('保存成功')
@@ -94,7 +95,7 @@ export default {
         type: 'warning'
       }).then(() => {
         deleteBlackIp(id).then(() => {
-          this.initData()
+          this.loadData()
         }).then(() => {
           this.$message.success('删除成功')
         }).catch(error => {
@@ -107,17 +108,16 @@ export default {
     },
     toPage (obj) {
       this.queryParam.page = obj
-      this.initData()
+      this.loadData()
     }
   }
 }
 </script>
 <style scoped lang="scss">
-  .blackIpContainer {
+  .__custom-pagination {
+    margin-top: 16px;
     display: flex;
     width: 100%;
-    table {
-      width: 100%;
-    }
+    justify-content: center;
   }
 </style>

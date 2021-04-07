@@ -1,10 +1,9 @@
 import httpClient from '../util/http'
 
-export function getCategoryList (params) {
+export function getCategories () {
   return httpClient({
     url: '/api/categories',
-    method: 'get',
-    params: params
+    method: 'get'
   })
 }
 
@@ -29,9 +28,6 @@ export function updateCategory (params) {
   return httpClient({
     url: `/api/category/${params.id}`,
     method: 'put',
-    params: params,
-    headers: {
-      'Content-Type': 'application/json;charset=utf8'
-    }
+    data: params
   })
 }
