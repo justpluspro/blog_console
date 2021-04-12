@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="__main_container">
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item label="分类名称">
         <el-input v-model="query" size="small" placeholder="关键字"></el-input>
@@ -20,8 +20,8 @@
       <el-table-column prop="createAt" label="创建时间"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row)" type="primary" icon="el-icon-edit" size="mini"></el-button>
-          <el-button @click="handleDelete(scope.row)" type="danger" icon="el-icon-delete" size="mini"></el-button>
+          <el-button @click="handleEdit(scope.row)" type="text" size="mini">编辑</el-button>
+          <el-button @click="handleDelete(scope.row)" type="text" size="mini">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

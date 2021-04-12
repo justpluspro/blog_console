@@ -11,7 +11,8 @@ import Files from '../views/files/Files'
 import Config from '../views/configs/Config'
 import Console from '../views/Console'
 import Error from '../views/404'
-// import { getToken } from '../api/cookie'
+import NewArticle from '../views/article/NewArticle'
+import Comments from '../views/comment/Comments'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
         component: Articles
       },
       {
+        path: '/console/article/create',
+        name: 'NewArticle',
+        component: NewArticle
+      },
+      {
         path: '/console/tags',
         name: 'Tags',
         component: Tags
@@ -34,6 +40,11 @@ const routes = [
         path: '/console/moments',
         name: 'Moments',
         component: Moments
+      },
+      {
+        path: '/console/comments',
+        name: 'Comments',
+        component: Comments
       },
       {
         path: '/console/moment/:id',

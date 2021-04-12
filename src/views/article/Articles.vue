@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 16px; background-color: #ffffff;">
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item label="关键字">
         <el-input v-model="query" size="small" placeholder="关键字"></el-input>
@@ -19,7 +19,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="small" icon="el-icon-search" @click="handleQuery">查询</el-button>
-        <el-button type="primary" size="small" icon="el-icon-plus">新增</el-button>
+        <el-button type="primary" size="small" @click="newArticle" icon="el-icon-plus">新增</el-button>
       </el-form-item>
     </el-form>
 
@@ -79,6 +79,9 @@ export default {
     },
     toPage (page) {
       console.log(page)
+    },
+    newArticle () {
+      this.$router.push('/console/article/create')
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="__main_container">
     <el-button size="small" type="primary" @click="openSaveDialog">新增黑名单</el-button>
     <el-table
       :data="datalist"
@@ -18,7 +18,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button type="danger" size="small" @click="deleteBlackIp(scope.row.id)">删除</el-button>
+          <el-button type="text" size="small" @click="deleteBlackIp(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

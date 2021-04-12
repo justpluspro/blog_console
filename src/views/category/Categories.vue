@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="__main_container">
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item>
         <el-button type="primary" size="small" @click="dialogFormVisible = true">新增分类</el-button>
@@ -17,8 +17,8 @@
       <el-table-column prop="modifyAt" label="修改时间"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row)" type="primary" size="mini">编辑</el-button>
-          <el-button @click="handleDelete(scope.row)" type="danger" size="mini">删除</el-button>
+          <el-button @click="handleEdit(scope.row)" type="text" size="mini">编辑</el-button>
+          <el-button @click="handleDelete(scope.row)" type="text" size="mini">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

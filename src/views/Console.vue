@@ -1,57 +1,55 @@
 <template>
-  <el-container>
-    <el-aside style="width: 200px; height: 100vh; background-color: #2f4256">
-      <el-menu default-active="/console/articles" class="el-menu-vertical-demo"
-               :collapse="collapse"
-               :router="true"
-               :collapse-transition="true"
-               background-color="#2f4256" text-color="#fff"
-        active-text-color="#ffd04b">
-        <el-menu-item index="/console/articles">
-          <i class="el-icon-box"></i>
-          <span slot="title">文章列表</span>
-        </el-menu-item>
-        <el-menu-item index="/console/moments">
-          <i class="el-icon-setting"></i>
-          <span slot="title">动态列表</span>
-        </el-menu-item>
-        <el-menu-item index="/console/files">
-          <i class="el-icon-setting"></i>
-          <span slot="title">文件管理</span>
-        </el-menu-item>
-        <el-menu-item index="/console/categories">
-          <i class="el-icon-setting"></i>
-          <span slot="title">分类管理</span>
-        </el-menu-item>
-        <el-menu-item index="/console/tags">
-          <i class="el-icon-setting"></i>
-          <span slot="title">标签管理</span>
-        </el-menu-item>
-        <el-menu-item index="/console/blackips">
-          <i class="el-icon-setting"></i>
-          <span slot="title">黑名单管理</span>
-        </el-menu-item>
-        <el-menu-item index="/console/configs">
-          <i class="el-icon-setting"></i>
-          <span slot="title">系统设置</span>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
     <el-container>
-      <el-header class="custom-header">
-        <el-menu mode="horizontal">
-          <el-menu-item>
-            <i class="el-icon-folder-add" @click="collapse = !collapse"></i>
-          </el-menu-item>
-        </el-menu>
+      <el-header style="border-bottom: 1px solid #eeeeee;">
+        <el-row :gutter="24">
+          <el-col :span="18" :offset="3">
+            <el-menu :default-active="1" mode="horizontal" router>
+              <el-menu-item index="/console/dashboard" style="font-weight: bold; color: black">Dashboard</el-menu-item>
+              <el-menu-item index="/console/articles">
+                <i class="el-icon-setting"></i>
+                <span slot="title">文章</span>
+              </el-menu-item>
+              <el-menu-item index="/console/moments">
+                <i class="el-icon-setting"></i>
+                <span slot="title">动态</span>
+              </el-menu-item>
+              <el-menu-item index="/console/comments">
+                <i class="el-icon-location"></i>
+                <span slot="title">评论</span>
+              </el-menu-item>
+              <el-menu-item index="/console/files">
+                <i class="el-icon-setting"></i>
+                <span slot="title">文件</span>
+              </el-menu-item>
+              <el-menu-item index="/console/categories">
+                <i class="el-icon-setting"></i>
+                <span slot="title">分类</span>
+              </el-menu-item>
+              <el-menu-item index="/console/tags">
+                <i class="el-icon-setting"></i>
+                <span slot="title">标签</span>
+              </el-menu-item>
+              <el-menu-item index="/console/blackips">
+                <i class="el-icon-setting"></i>
+                <span slot="title">黑名单</span>
+              </el-menu-item>
+              <el-menu-item index="/console/config">
+                <i class="el-icon-setting"></i>
+                <span slot="title">设置</span>
+              </el-menu-item>
+            </el-menu>
+          </el-col>
+        </el-row>
       </el-header>
-      <el-main>
-        <div class="__custom-main">
+      <el-main style="background-color:#eeeeee;">
+        <el-col :span="18" :offset="3">
           <router-view />
-        </div>
+        </el-col>
       </el-main>
+      <el-footer>
+        Powered by blog8
+      </el-footer>
     </el-container>
-  </el-container>
 </template>
 
 <script>
@@ -66,43 +64,13 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.el-header {
-  position: fixed;
-  display: flex;
-  width: 100%;
-  left: 200px;
-  height: 50px;
-  line-height: 50px;
-}
-.el-aside {
-  display: block;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-}
-.el-main {
-  padding: 8px !important;
-  position: fixed;
-  left: 200px;
-  right: 0;
-  top: 60px;
-  bottom: 0;
-  background-color: #eeeeee !important;
-  overflow-y: scroll;
-}
-.el-menu {
-  border-right: none;
-}
-.__custom-main {
-  margin-bottom: 50px !important;
+<style lang="scss">
+.__main_container {
   padding: 16px;
   background-color: #fff;
-  border-radius: 4px;
+  margin: 0 20px;
 }
-
-.custom-header {
-  border-bottom: 1px solid #eeeeee !important;
+.el-main {
+  height: calc(100% - 80px);
 }
 </style>
