@@ -75,6 +75,8 @@ export default {
       getBlackIps(this.queryParam).then(res => {
         this.datalist = res.data
         this.pageInfo.totalRows = res.totalRows
+      }).catch(error => {
+        console.log('huoqu blackips:' + JSON.stringify(error))
       })
     },
     openSaveDialog () {

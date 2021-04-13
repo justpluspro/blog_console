@@ -1,76 +1,37 @@
 <template>
   <div>
-    <editor :initialValue="$store.state.moment.content"
-            :options="editorOptions"
-            :initialEditType="markdown"
-            @focus="onEditorFocus"
-            @blur="onEditorBlur"
-            @change="onEditorChange"
-            @stateChange="onEditorStateChange"
-            @load="onEditorLoad"
-    height="500px" previewStyle="vertical"></editor>
+    <form onsubmit="return false">
+      <textarea id="content" rows="30" cols="50" name="content" v-model="moment.content"></textarea><br/>
+      允许评论<input type="checkbox" v-model="moment.allowComment" /><br/>
+      私人动态<input type="checkbox" v-model="moment.private" /> <br/>
+      <button @click="saveComment">保存</button>
+    </form>
   </div>
 </template>
 
 <script>
-import 'codemirror/lib/codemirror.css'
-import '@toast-ui/editor/dist/toastui-editor.css'
-import { Editor } from '@toast-ui/vue-editor'
+import { saveMoment } from '../../api/moment'
 export default {
   name: 'Moment',
   mounted () {
-    console.log(this.$route.params)
-    this.$store.dispatch('getMoment', this.$route.params.id)
-  },
-  components: {
-    editor: Editor
+    // console.log(this.$route.params)
+    // this.$store.dispatch('getMoment', this.$route.params.id)
   },
   data () {
     return {
-      data: 'hello world',
-      editorOptions: {
-        hideModeSwitch: true,
-        language: 'zh-CN',
-        toolbarItem: [
-          'heading',
-          'bold',
-          'italic',
-          'strike',
-          'divider',
-          'hr',
-          'quote',
-          'divider',
-          'ul',
-          'ol',
-          'task',
-          'indent',
-          'outdent',
-          'divider',
-          'table',
-          'image',
-          'link',
-          'divider',
-          'code',
-          'codeblock'
-        ]
+      moment: {
+        content: '',
+        allowComment: true,
+        private: false
       }
     }
   },
   methods: {
-    onEditorLoad () {
-      console.log('编辑器已经加载完成')
-    },
-    onEditorFocus () {
-      console.log('编辑器获取到焦点')
-    },
-    onEditorBlur () {
-      console.log('编辑器失去焦点')
-    },
-    onEditorChange () {
-      console.log('编辑器改变了')
-    },
-    onEditorStateChange () {
-      console.log('编辑器状态改变了')
+    saveComment: function () {
+      console.log(this.moment)
+      saveMoment(this.moment).then(res => {
+        this.$router.push('/console/moments')
+      })
     }
   }
 }

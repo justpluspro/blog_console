@@ -18,6 +18,7 @@
 <script>
 import { login } from '../api/login'
 import { setToken } from '../util/cookie'
+import router from '../router'
 
 export default {
   name: 'login',
@@ -47,8 +48,17 @@ export default {
           console.log('验证成功')
           login(this.loginForm.username, this.loginForm.password).then((res) => {
             this.$message.success('登录成功')
-            setToken('x-auth-token', res.data)
-            this.$router.push('/console/articles')
+            console.log('登录成功：' + res)
+            setToken('x-auth-token', res)
+            const query = router.currentRoute.query
+            if (query !== undefined && query.redirect !== undefined && query.redirect !== '') {
+              this.$router.push(query.redirect)
+            } else {
+              this.$router.push('/console/articles')
+            }
+          }).catch(error => {
+            console.log('登录失败：' + error)
+            alert(error)
           })
         } else {
           return false

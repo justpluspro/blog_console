@@ -13,6 +13,7 @@ import Console from '../views/Console'
 import Error from '../views/404'
 import NewArticle from '../views/article/NewArticle'
 import Comments from '../views/comment/Comments'
+import { getToken } from '../util/cookie'
 
 Vue.use(VueRouter)
 
@@ -48,6 +49,11 @@ const routes = [
       },
       {
         path: '/console/moment/:id',
+        name: 'Moment',
+        component: Moment
+      },
+      {
+        path: '/console/moment/create',
         name: 'Moment',
         component: Moment
       },
@@ -94,15 +100,18 @@ const router = new VueRouter({
 /**
  * 路由守卫
  */
-// router.beforeEach((to, from, next) => {
-//   console.log('router beforeEach: ' + to.path)
-//   if (to.path === '/api/token' && !to.path.includes('/api')) {
-//     const token = getToken('x-auth-token')
-//     if (token === null || token === undefined || token === '') {
-//       // 缺少 token 就跳转到 login
-//       next('/login')
-//     }
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  console.log('router beforeEach: ' + to.path)
+  if (to.path === '/api/token') {
+    next()
+  } else if (to.path.includes('/api')) {
+    const token = getToken('x-auth-token')
+    if (token === null || token === undefined || token === '') {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
 
 export default router

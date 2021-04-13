@@ -13,9 +13,6 @@ export function login (username, password) {
     data: {
       username: username,
       password: password
-    },
-    headers: {
-      'Content-Type': ''
     }
   })
 }
