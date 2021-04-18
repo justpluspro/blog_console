@@ -4,7 +4,7 @@
       <textarea id="content" rows="30" cols="50" name="content" v-model="moment.content"></textarea><br/>
       允许评论<input type="checkbox" v-model="moment.allowComment" /><br/>
       私人动态<input type="checkbox" v-model="moment.private" /> <br/>
-      <button @click="saveComment">保存</button>
+      <button @click="submitMoment">保存</button>
     </form>
   </div>
 </template>
@@ -27,9 +27,12 @@ export default {
     }
   },
   methods: {
-    saveComment: function () {
-      console.log(this.moment)
+    submitMoment: function () {
       saveMoment(this.moment).then(res => {
+        this.$message({
+          type: 'success',
+          message: '保存成功!'
+        })
         this.$router.push('/console/moments')
       })
     }

@@ -45,7 +45,6 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log('验证成功')
           login(this.loginForm.username, this.loginForm.password).then((res) => {
             this.$message.success('登录成功')
             console.log('登录成功：' + res)

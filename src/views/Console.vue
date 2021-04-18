@@ -3,7 +3,7 @@
       <el-header style="border-bottom: 1px solid #eeeeee;">
         <el-row :gutter="24">
           <el-col :span="18" :offset="3">
-            <el-menu :default-active="1" mode="horizontal" router>
+            <el-menu :default-active="defaultActive" mode="horizontal" router>
               <el-menu-item index="/console/dashboard" style="font-weight: bold; color: black">Dashboard</el-menu-item>
               <el-menu-item index="/console/articles">
                 <i class="el-icon-setting"></i>
@@ -46,9 +46,6 @@
           <router-view />
         </el-col>
       </el-main>
-      <el-footer>
-        Powered by blog8
-      </el-footer>
     </el-container>
 </template>
 
@@ -57,6 +54,7 @@ export default {
   name: 'Console',
   data () {
     return {
+      defaultActive: '/console/articles',
       collapse: false,
       back: '#dddddd'
     }

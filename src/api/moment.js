@@ -23,6 +23,13 @@ export function deleteMoment (id) {
   })
 }
 
+export function getMoment (id) {
+  return httpClient({
+    url: `/api/moment/${id}`,
+    method: 'get'
+  })
+}
+
 export function updateMoment (moment) {
   return httpClient({
     url: `/api/moment/${moment.id}`,

@@ -22,6 +22,7 @@ httpClient.interceptors.request.use(function (config) {
   console.log(headers)
 
   const token = getToken('x-auth-token')
+  console.log(token)
   if (token !== undefined || token !== '' || token !== null) {
     console.log('这里获取 token:' + token)
     headers['x-auth-token'] = token

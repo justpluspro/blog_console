@@ -57,6 +57,7 @@ export default {
   methods: {
     loadData () {
       getCategories().then((res) => {
+        console.log('获取动态：' + res)
         this.datalist = res
       }).catch(error => {
         this.$message.error('获取分类列表失败' + error)
