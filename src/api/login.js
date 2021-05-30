@@ -10,6 +10,9 @@ export function login (username, password) {
   return httpClient({
     url: '/api/token',
     method: 'post',
+    headers: {
+      'Content-type': 'application/json;charset=utf8'
+    },
     data: {
       username: username,
       password: password

@@ -116,10 +116,8 @@ const router = new VueRouter({
  */
 router.beforeEach((to, from, next) => {
   const requestUri = to.path
-  console.log('router beforeEach: ' + requestUri)
-  const token = getToken('x-auth-token')
-  console.log(token)
-  if (requestUri.includes('/console')) {
+  if (requestUri.startsWith('/console')) {
+    const token = getToken('x-auth-token')
     if (token == null || token === '') {
       next('/login')
     } else {

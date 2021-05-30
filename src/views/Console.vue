@@ -1,52 +1,18 @@
 <template>
-    <el-container>
-      <el-header style="border-bottom: 1px solid #eeeeee;">
-        <el-row :gutter="24">
-          <el-col :span="18" :offset="3">
-            <el-menu :default-active="defaultActive" mode="horizontal" router>
-              <el-menu-item index="/console/dashboard" style="font-weight: bold; color: black">Dashboard</el-menu-item>
-              <el-menu-item index="/console/articles">
-                <i class="el-icon-setting"></i>
-                <span slot="title">文章</span>
-              </el-menu-item>
-              <el-menu-item index="/console/moments">
-                <i class="el-icon-setting"></i>
-                <span slot="title">动态</span>
-              </el-menu-item>
-              <el-menu-item index="/console/comments">
-                <i class="el-icon-location"></i>
-                <span slot="title">评论</span>
-              </el-menu-item>
-              <el-menu-item index="/console/files">
-                <i class="el-icon-setting"></i>
-                <span slot="title">文件</span>
-              </el-menu-item>
-              <el-menu-item index="/console/categories">
-                <i class="el-icon-setting"></i>
-                <span slot="title">分类</span>
-              </el-menu-item>
-              <el-menu-item index="/console/tags">
-                <i class="el-icon-setting"></i>
-                <span slot="title">标签</span>
-              </el-menu-item>
-              <el-menu-item index="/console/blackips">
-                <i class="el-icon-setting"></i>
-                <span slot="title">黑名单</span>
-              </el-menu-item>
-              <el-menu-item index="/console/config">
-                <i class="el-icon-setting"></i>
-                <span slot="title">设置</span>
-              </el-menu-item>
-            </el-menu>
-          </el-col>
-        </el-row>
-      </el-header>
-      <el-main style="background-color:#eeeeee;">
-        <el-col :span="18" :offset="3">
-          <router-view />
-        </el-col>
-      </el-main>
-    </el-container>
+    <div>
+      <div class="header">
+        <router-link to="/console/articles" tag="a">文章列表</router-link>
+        <router-link to="/console/moments" tag="a">动态列表</router-link>
+        <router-link to="/console/comments" tag="a">评论管理</router-link>
+        <router-link to="/console/files" tag="a">文件管理</router-link>
+        <router-link to="/console/categories" tag="a">分类</router-link>
+        <router-link to="/console/tags" tag="a">标签</router-link>
+        <router-link to="/console/configs" tag="a">设置</router-link>
+      </div>
+      <div class="content">
+        <router-view />
+      </div>
+    </div>
 </template>
 
 <script>
@@ -54,9 +20,6 @@ export default {
   name: 'Console',
   data () {
     return {
-      defaultActive: '/console/articles',
-      collapse: false,
-      back: '#dddddd'
     }
   }
 }

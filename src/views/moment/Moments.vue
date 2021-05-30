@@ -1,47 +1,45 @@
 <template>
-  <div>
-    <el-form :inline="true" class="demo-form-inline">
-      <el-form-item label="关键字">
-        <el-input v-model="queryForm.query" size="small" placeholder="关键字"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" size="small" icon="el-icon-search" @click="handleQuery">查询</el-button>
-        <el-button type="primary" size="small" icon="el-icon-plus" @click="handleNewMoment">新增</el-button>
-      </el-form-item>
-    </el-form>
-
-    <el-table :data="moments">
-      <el-table-column prop="id" label="序号"></el-table-column>
-      <el-table-column prop="content" label="内容"></el-table-column>
-      <el-table-column prop="createAt" label="发布时间"></el-table-column>
-      <el-table-column label="评论权限">
-        <template slot-scope="scope">
-          <el-tag type="success" v-if="scope.allowComment === false">关闭</el-tag>
-          <el-tag v-else type="warning">开启</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="私人动态">
-        <template slot-scope="scope">
-          <el-tag type="success" v-if="scope.private === true">私人</el-tag>
-          <el-tag type="success" v-else>开放</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column prop="hits" label="点击"></el-table-column>
-      <el-table-column prop="comments" label="评论数"></el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row)" type="text" size="mini">编辑</el-button>
-          <el-button @click="handleDelete(scope.row)" type="text" size="mini">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-pagination background layout="pager" :total="totalRows" @current-change="toPage">
-    </el-pagination>
+  <div id="container">
+    <div>
+      <form :model="queryForm">
+        <input type="text" v-model="queryForm.query">
+        <button type="button" @click="handleQuery">检索</button>
+        <button type="button" @click="resetForm">重置</button>
+        <button type="button" @click="handleNewMoment">新动态</button>
+      </form>
+    </div>
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th>内容</th>
+          <th>创建时间</th>
+          <th>受保护</th>
+          <th>评论</th>
+          <th>点击数</th>
+          <th>评论数</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(moment, key) in moments" :key="key" style="text-align: center">
+          <td><a href="" v-html="moment.content"></a></td>
+          <td> {{moment.createAt }} </td>
+          <td> {{ moment.private === true ? '私人': '公开' }} </td>
+          <td> {{ moment.allowComment === true ? '允许': '禁止' }} </td>
+          <td> {{ moment.hits }} </td>
+          <td> {{ moment.comments }} </td>
+          <td>
+            <a href="">编辑</a>
+            <a href="javascript:void(0);" @click="handleDelete(`${moment.id}`)">删除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import { getMoments, deleteMoment } from '../../api/moment'
+import { getMoments } from '../../api/moment'
 
 export default {
   name: 'Moments',
@@ -52,6 +50,12 @@ export default {
       },
       moments: [],
       totalRows: 0
+    }
+  },
+  filters: {
+    dateFormat (data) {
+      console.log(data)
+      return '111'
     }
   },
   mounted () {
@@ -69,10 +73,6 @@ export default {
     },
     handleQuery: function () {
       this.loadData(this.queryForm)
-
-      // http.get('api/tag?query=' + this.query).then(res => {
-      //   this.categories = res.data
-      // })
     },
     handleEdit: function (obj) {
       this.$router.push(`/console/moment/${obj.id}/edit`)
@@ -80,20 +80,8 @@ export default {
       // this.dialogFormVisible = true
       // this.category.name = obj.name
     },
-    handleDelete: function (obj) {
-      this.$confirm('此操作将删除该动态, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        deleteMoment(obj.id).then(res => {
-          this.loadData()
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          })
-        })
-      })
+    handleDelete (id) {
+      alert(id)
     },
     handleSave () {
       // this.dialogFormVisible = false
@@ -102,6 +90,9 @@ export default {
       // http.post('api/category', JSON.stringify(this.category)).then(res => {
       //   console.log(JSON.stringify(this.category))
       // })
+    },
+    resetForm () {
+      this.queryForm.query = ''
     },
     toPage (obj) {
       console.log(obj)
