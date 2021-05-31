@@ -1,4 +1,4 @@
-// module.exports = {
+module.exports = {
 //   devServer: {
 //     proxy: {
 //       '/*': {
@@ -7,4 +7,6 @@
 //       }
 //     }
 //   }
-// }
+//   publicPath: '/static/',
+//   outputDir: 'dist/static/',
+}

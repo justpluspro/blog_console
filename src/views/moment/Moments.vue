@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <div>
+    <div id="toolbar">
       <form :model="queryForm">
         <input type="text" v-model="queryForm.query">
         <button type="button" @click="handleQuery">检索</button>
@@ -11,7 +11,7 @@
     <table class="table table-responsive">
       <thead>
         <tr>
-          <th>内容</th>
+          <th style="width: 20%; word-break: break-all">内容</th>
           <th>创建时间</th>
           <th>受保护</th>
           <th>评论</th>
@@ -93,6 +93,7 @@ export default {
     },
     resetForm () {
       this.queryForm.query = ''
+      this.loadData(this.queryForm)
     },
     toPage (obj) {
       console.log(obj)
@@ -100,3 +101,19 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+#container {
+  #toolbar {
+    height: 42px;
+    line-height: 42px;
+    input {
+      height: 28px;
+      line-height: 28px;
+    }
+  }
+  table {
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+  }
+}
+</style>

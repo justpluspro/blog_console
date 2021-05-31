@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import router from '../router'
 import { getToken } from './cookie'
+import router from '../router'
 // import { setToken, getToken } from '../api/cookie'
 // import { getToken } from './cookie'
 // import { Message } from 'element-ui'
@@ -33,16 +34,15 @@ httpClient.interceptors.response.use(function (response) {
   // 这里直接返回数据
   return response.data
 }, function (error) {
-  // if (error.response.status === 401) {
-  //   router.replace({
-  //     path: '/login',
-  //     query: {
-  //       redirect: router.currentRoute.fullPath
-  //     }
-  //   }).then(() => {
-  //
-  //   })
-  // }
+  if (error.response.status === 401) {
+    router.replace({
+      path: '/login',
+      query: {
+        redirect: router.currentRoute.fullPath
+      }
+    }).then(() => {
+    })
+  }
   return Promise.reject(error)
 })
 
