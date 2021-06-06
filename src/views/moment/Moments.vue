@@ -1,40 +1,57 @@
 <template>
   <div id="container">
-    <div id="toolbar">
-      <form :model="queryForm">
-        <input type="text" v-model="queryForm.query">
-        <button type="button" @click="handleQuery">检索</button>
-        <button type="button" @click="resetForm">重置</button>
-        <button type="button" @click="handleNewMoment">新动态</button>
-      </form>
+    <el-form :inline="true" :model="queryForm" class="demo-form-inline">
+      <el-form-item label="关键字">
+        <el-input v-model="queryForm.query" placeholder="关键字"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="handleQuery">查询</el-button>
+        <el-button type="primary" @click="resetForm">重置</el-button>
+        <el-button type="primary" @click="handleNewMoment">新动态</el-button>
+      </el-form-item>
+    </el-form>
+    <el-table :data="datalist" style="width: 100%">
+      <el-table-column prop="content" label="内容"></el-table-column>
+      <el-table-column prop="createAt" label="创建时间"></el-table-column>
+      <el-table-column label="受保护">
+        <template slot-scope="scope">
+          <el-tag type="warning" v-if="scope.row.private === true">保护</el-tag>
+          <el-tag type="success" v-else>公开</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="评论权限">
+        <template slot-scope="scope">
+          <el-tag type="success" v-if="scope.row.allowComment === true">允许</el-tag>
+          <el-tag type="danger" v-else>禁止</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="hits" label="点击数"></el-table-column>
+      <el-table-column prop="comments" label="评论数"></el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button
+            @click.native.prevent="deleteRow(scope.$index, tableData)"
+            type="text"
+            size="small">
+            删除
+          </el-button>
+          <el-button
+            @click="handleEdit(scope.row)"
+            type="text"
+            size="small">
+            编辑
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div style="margin: 0 auto">
+      <el-pagination
+        background
+        @current-change="handleCurrentChange"
+        layout="prev, pager, next"
+        :total="totalRows">
+      </el-pagination>
     </div>
-    <table class="table table-responsive">
-      <thead>
-        <tr>
-          <th style="width: 20%; word-break: break-all">内容</th>
-          <th>创建时间</th>
-          <th>受保护</th>
-          <th>评论</th>
-          <th>点击数</th>
-          <th>评论数</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(moment, key) in moments" :key="key" style="text-align: center">
-          <td><a href="" v-html="moment.content"></a></td>
-          <td> {{moment.createAt }} </td>
-          <td> {{ moment.private === true ? '私人': '公开' }} </td>
-          <td> {{ moment.allowComment === true ? '允许': '禁止' }} </td>
-          <td> {{ moment.hits }} </td>
-          <td> {{ moment.comments }} </td>
-          <td>
-            <a href="">编辑</a>
-            <a href="javascript:void(0);" @click="handleDelete(`${moment.id}`)">删除</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 
@@ -46,9 +63,10 @@ export default {
   data () {
     return {
       queryForm: {
-        query: ''
+        query: '',
+        page: 1
       },
-      moments: [],
+      datalist: [],
       totalRows: 0
     }
   },
@@ -64,8 +82,9 @@ export default {
   methods: {
     loadData (queryObj) {
       getMoments(queryObj).then(res => {
-        this.moments = res.data
+        this.datalist = res.data
         this.totalRows = res.totalRows
+        this.queryForm.page = res.page
       })
     },
     handleNewMoment: function () {
@@ -79,6 +98,11 @@ export default {
       // this.category.id = obj.id
       // this.dialogFormVisible = true
       // this.category.name = obj.name
+    },
+    handleCurrentChange (val) {
+      this.queryForm.page = val
+      console.log(val)
+      this.loadData(this.queryForm)
     },
     handleDelete (id) {
       alert(id)

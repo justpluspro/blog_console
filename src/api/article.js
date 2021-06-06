@@ -22,6 +22,7 @@ const article = {
     return httpClient({
       url: '/api/article',
       method: 'post',
+      data: JSON.stringify(params),
       headers: {
         'Content-Type': 'application/json;charset=utf8'
       }

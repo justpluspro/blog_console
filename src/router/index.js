@@ -25,67 +25,67 @@ const routes = [
     children: [
       {
         // 文章列表
-        path: '/console/articles',
+        path: '/article/index',
         name: 'Articles',
         component: Articles
       },
       {
         // 创建文章
-        path: '/console/article/create',
+        path: '/article/create',
         name: 'NewArticle',
         component: NewArticle
       },
       {
         // 标签列表
-        path: '/console/tags',
+        path: '/tag/index',
         name: 'Tags',
         component: Tags
       },
       {
         // 动态列表
-        path: '/console/moments',
+        path: '/moment/index',
         name: 'Moments',
         component: Moments
       },
       {
         // 评论列表
-        path: '/console/comments',
+        path: '/comment/index',
         name: 'Comments',
         component: Comments
       },
       {
         // 编辑动态
-        path: '/console/moment/:id/edit',
+        path: '/moment/:id/edit',
         name: 'MomentEdit',
         component: MomentEdit
       },
       {
         // 创建动态
-        path: '/console/moment/create',
+        path: '/moment/create',
         name: 'Moment',
         component: Moment
       },
       {
         // 分类列表
-        path: '/console/categories',
+        path: '/category/index',
         name: 'Categories',
         component: Categories
       },
       {
         // 文件列表
-        path: '/console/files',
+        path: '/file/index',
         name: 'Files',
         component: Files
       },
       {
         // 黑名单列表
-        path: '/console/blackips',
+        path: '/blackip/index',
         name: 'BlackIps',
         component: BlackIps
       },
       {
         // 配置列表
-        path: '/console/configs',
+        path: '/config/index',
         name: 'Config',
         component: Config
       }
@@ -116,7 +116,7 @@ const router = new VueRouter({
  */
 router.beforeEach((to, from, next) => {
   const requestUri = to.path
-  if (requestUri.startsWith('/console')) {
+  if (requestUri !== '/login') {
     const token = getToken('x-auth-token')
     if (token == null || token === '') {
       next('/login')

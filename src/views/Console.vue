@@ -1,19 +1,50 @@
 <template>
-    <div class="main-container">
-      <div class="header">
-        <router-link to="/console/articles" tag="a">文章列表</router-link>
-        <router-link to="/console/moments" tag="a">动态列表</router-link>
-        <router-link to="/console/comments" tag="a">评论管理</router-link>
-        <router-link to="/console/files" tag="a">文件管理</router-link>
-        <router-link to="/console/categories" tag="a">分类</router-link>
-        <router-link to="/console/tags" tag="a">标签</router-link>
-        <router-link to="/console/blackips" tag="a">黑名单</router-link>
-        <router-link to="/console/configs" tag="a">设置</router-link>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link tag="a" class="nav-link" to="/article/index">文章管理</router-link>
+<!--              <a class="nav-link active" aria-current="page" href="#"></a>-->
+            </li>
+            <li class="nav-item">
+              <router-link tag="a" class="nav-link" to="/moment/index">动态管理</router-link>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
       </div>
-      <div class="content">
-        <router-view />
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <router-view />
+        </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -21,36 +52,23 @@ export default {
   name: 'Console',
   data () {
     return {
+      activeIndex: '/article/index'
+    }
+  },
+  methods: {
+    handleSelect (key, keyPath) {
+      this.activeIndex = keyPath
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.main-container {
-  max-width: 80%;
-  width: 80%;
-  margin: 0 auto;
-  .header {
-    height: 56px;
-    border-bottom: 1px solid #eeeeee;
-    line-height: 56px;
-    a {
-      padding: 4px;
-      text-decoration: none;
-      color: black;
-    }
-    a:hover {
-      text-decoration: none;
-      color: aqua;
-    }
-    a .active {
-      color: aqua;
-      text-decoration: none;
-    }
-  }
-  .content {
-    width: 100%;
-  }
+.el-menu-item {
+  margin-right: 16px !important;
+  padding: 0 !important;
+}
+.el-menu {
+  border-bottom: none !important;
 }
 </style>
