@@ -9,15 +9,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link tag="a" class="nav-link" to="/article/index">文章管理</router-link>
-<!--              <a class="nav-link active" aria-current="page" href="#"></a>-->
+              <router-link tag="a" class="nav-link" to="/article/index">文章</router-link>
             </li>
             <li class="nav-item">
-              <router-link tag="a" class="nav-link" to="/moment/index">动态管理</router-link>
+              <router-link tag="a" class="nav-link" to="/moment/index">动态</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link tag="a" class="nav-link" to="/comment/index">评论</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link tag="a" class="nav-link" to="/comment/index">文件</router-link>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
+                模板
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -27,13 +32,18 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              <router-link tag="a" class="nav-link" to="/category/index">分类</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link tag="a" class="nav-link" to="/tag/index">标签</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link tag="a" class="nav-link" to="/blackip/index">黑名单</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link tag="a" class="nav-link" to="/config/index">设置</router-link>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>

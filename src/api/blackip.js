@@ -12,7 +12,10 @@ export function saveBlackIp (obj) {
   return httpClient({
     url: '/api/blackip',
     method: 'post',
-    data: obj
+    data: JSON.stringify(obj),
+    headers: {
+      'Content-Type': 'application/json;charset=utf8'
+    }
   })
 }
 
