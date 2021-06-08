@@ -1,38 +1,48 @@
 <template>
-  <div class="__main_container">
-    <el-form :inline="true" class="demo-form-inline">
-      <el-form-item>
-        <el-button type="primary" size="small" @click="dialogFormVisible = true">新增分类</el-button>
-      </el-form-item>
-    </el-form>
-
-    <el-table :data="datalist">
-      <el-table-column prop="id" label="序号"></el-table-column>
-      <el-table-column prop="name" label="名称">
-        <template slot-scope="scope">
-          <el-tag type="success"> {{ scope.row.name }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column prop="createAt" label="创建时间"></el-table-column>
-      <el-table-column prop="modifyAt" label="修改时间"></el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row)" type="text" size="mini">编辑</el-button>
-          <el-button @click="handleDelete(scope.row)" type="text" size="mini">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-dialog title="新增/编辑分类" :visible.sync="dialogFormVisible">
-      <el-form :model="category">
-        <el-form-item label="分类名称" :label-width="formLabelWidth">
-          <el-input v-model="category.name" size="small" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button size="small" @click="closeDialog">取 消</el-button>
-        <el-button type="primary" size="small" @click="handleSave">确 定</el-button>
+  <div class="page-wrapper">
+    <div class="page-header d-print-none">
+      <div class="container-xl">
+        <div class="row align-items-center">
+          <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+              <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                新分类
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </el-dialog>
+    </div>
+    <div class="page-body">
+      <div class="container-xl">
+        <div class="table-responsive">
+          <table class="table table-vcenter table-bordered">
+            <thead>
+            <tr>
+              <th>序号</th>
+              <th>分类名称</th>
+              <th>创建时间</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="category in datalist" :key="category.id">
+              <td> {{ category.id }} </td>
+              <td> {{ category.name }} </td>
+              <td> {{ category.createAt }} </td>
+              <td>
+                <a class="text-primary text-decoration-none" @click="handleEdit(category)" href="javascript:void(0)">编辑</a>
+                <a class="text-danger text-decoration-none" @click="handleDelete(category.id)" href="javascript:void(0);">
+                  删除
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,9 +56,7 @@ export default {
         query: ''
       },
       datalist: [],
-      dialogFormVisible: false,
-      category: {},
-      formLabelWidth: '120px'
+      category: {}
     }
   },
   mounted () {
@@ -57,10 +65,9 @@ export default {
   methods: {
     loadData () {
       getCategories().then((res) => {
-        console.log('获取动态：' + res)
         this.datalist = res
       }).catch(error => {
-        this.$message.error('获取分类列表失败' + error)
+        console.log(error)
       })
     },
     handleEdit: function (obj) {
@@ -84,7 +91,6 @@ export default {
       })
     },
     handleSave () {
-      this.dialogFormVisible = false
       console.log(JSON.stringify(this.category))
       saveCategory(this.category).then(() => {
         this.loadData()

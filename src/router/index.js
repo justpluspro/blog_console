@@ -101,7 +101,8 @@ const routes = [
     // 其他页面
     path: '*',
     name: '404',
-    component: Error
+    component: Error,
+    redirect: Login
   }
 ]
 

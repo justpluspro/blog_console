@@ -9,4 +9,5 @@ module.exports = {
 //   }
 //   publicPath: '/static/',
 //   outputDir: 'dist/static/',
+  assetsDir: './static/'
 }

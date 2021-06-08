@@ -1,56 +1,58 @@
 <template>
-  <div id="container">
-    <el-form :inline="true" :model="queryForm" class="demo-form-inline">
-      <el-form-item label="关键字">
-        <el-input v-model="queryForm.query" placeholder="关键字"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="handleQuery">查询</el-button>
-        <el-button type="primary" @click="resetForm">重置</el-button>
-        <el-button type="primary" @click="handleNewMoment">新动态</el-button>
-      </el-form-item>
-    </el-form>
-    <el-table :data="datalist" style="width: 100%">
-      <el-table-column prop="content" label="内容"></el-table-column>
-      <el-table-column prop="createAt" label="创建时间"></el-table-column>
-      <el-table-column label="受保护">
-        <template slot-scope="scope">
-          <el-tag type="warning" v-if="scope.row.private === true">保护</el-tag>
-          <el-tag type="success" v-else>公开</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="评论权限">
-        <template slot-scope="scope">
-          <el-tag type="success" v-if="scope.row.allowComment === true">允许</el-tag>
-          <el-tag type="danger" v-else>禁止</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column prop="hits" label="点击数"></el-table-column>
-      <el-table-column prop="comments" label="评论数"></el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button
-            @click.native.prevent="deleteRow(scope.$index, tableData)"
-            type="text"
-            size="small">
-            删除
-          </el-button>
-          <el-button
-            @click="handleEdit(scope.row)"
-            type="text"
-            size="small">
-            编辑
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <div style="margin: 0 auto">
-      <el-pagination
-        background
-        @current-change="handleCurrentChange"
-        layout="prev, pager, next"
-        :total="totalRows">
-      </el-pagination>
+  <div class="page-wrapper">
+    <div class="container-xl">
+      <div class="page-header d-print-none">
+        <div class="row align-items-center">
+          <div class="col">
+            <h2 class="page-title">
+              Tables
+            </h2>
+          </div>
+          <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+              <a href="javascript:void(0)" @click="handleNew" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                新动态
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-body">
+      <div class="container-xl">
+        <div class="col-12">
+          <div class="card">
+            <div class="table-responsive">
+              <table class="table table-vcenter card-table">
+                <thead>
+                  <tr>
+                    <th>内容</th>
+                    <th>创建时间</th>
+                    <th>允许评论</th>
+                    <th>私人</th>
+                    <th>评论数</th>
+                    <th>点击数</th>
+                    <th class="w-2">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="moment in datalist" :key="moment.id">
+                    <td></td>
+                    <td class="text-muted" v-text="moment.createAt"></td>
+                    <td></td>
+                    <td></td>
+                    <td v-text="moment.hits"></td>
+                    <td v-text="moment.comments"></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -87,8 +89,8 @@ export default {
         this.queryForm.page = res.page
       })
     },
-    handleNewMoment: function () {
-      this.$router.push('/console/moment/create')
+    handleNew: function () {
+      this.$router.push('/moment/create')
     },
     handleQuery: function () {
       this.loadData(this.queryForm)

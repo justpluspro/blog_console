@@ -1,44 +1,50 @@
 <template>
-  <div class="__main_container">
-    <el-form :inline="true" class="demo-form-inline">
-      <el-form-item label="分类名称">
-        <el-input v-model="query" size="small" placeholder="关键字"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" size="small" icon="el-icon-search" @click="handleQuery">查询</el-button>
-        <el-button type="primary" size="small" icon="el-icon-plus" @click="dialogFormVisible = true">新增</el-button>
-      </el-form-item>
-    </el-form>
-
-    <el-table :data="tags">
-      <el-table-column prop="id" label="序号"></el-table-column>
-      <el-table-column label="名称">
-        <template slot-scope="scope">
-          <el-tag size="small"> {{scope.row.name}}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column prop="createAt" label="创建时间"></el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row)" type="text" size="mini">编辑</el-button>
-          <el-button @click="handleDelete(scope.row)" type="text" size="mini">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-pagination background layout="pager" :total="totalRows" @current-change="toPage">
-    </el-pagination>
-    <el-dialog title="新增/编辑分类" :visible.sync="dialogFormVisible">
-      <el-form :model="tag">
-        <el-form-item label="分类名称" :label-width="formLabelWidth">
-          <el-input v-model="tag.name" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleSave">确 定</el-button>
+  <div class="page-wrapper">
+      <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row align-items-center">
+              <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                  <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                    新标签
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
-    </el-dialog>
-  </div>
+      <div class="page-body">
+        <div class="container-xl">
+          <div class="table-responsive">
+            <table class="table table-vcenter table-bordered">
+              <thead>
+              <tr>
+                <th>序号</th>
+                <th>标签名称</th>
+                <th>创建时间</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="tag in datalist" :key="tag.id">
+                <td v-text="tag.id"></td>
+                <td><span class="badge bg-info" v-text="tag.name"></span></td>
+                <td v-text="tag.createAt"></td>
+                <td>
+                  <a class="text-primary text-decoration-none" @click="handleEdit(tag)" href="javascript:void(0)">编辑</a>
+                  <a class="text-danger text-decoration-none" @click="handleDelete(tag.id)" href="javascript:void(0);">
+                    删除
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -48,22 +54,15 @@ export default {
   data () {
     return {
       query: '',
-      dialogFormVisible: false,
       tag: {},
-      tags: [],
-      totalRows: 0,
-      formLabelWidth: '120px'
+      datalist: [],
+      totalRows: 0
     }
   },
   mounted () {
     getTagList().then((res) => {
-      this.tags = res.data
+      this.datalist = res.data
     })
-    // http.get('api/tags').then(res => {
-    //   // console.log(res.data.data)
-    //   this.tags = res.data.data
-    //   this.totalRows = res.data.totalRows
-    // })
   },
   methods: {
     handleQuery: function () {

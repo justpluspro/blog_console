@@ -90,12 +90,6 @@ export default {
           })
         }
       })
-      // Swal.fire({
-      //   title: 'Error!',
-      //   text: 'Do you want to continue',
-      //   icon: 'error',
-      //   confirmButtonText: 'Cool'
-      // })
       // this.addModal = new bootstrap.Modal(document.getElementById('myModal'))
       // this.addModal.togggle()
     },

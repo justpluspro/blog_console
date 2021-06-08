@@ -1,25 +1,12 @@
 <template>
-    <div>
-      <div id="vditor"></div>
-<!--      <textarea name="" id="vditor" cols="30" rows="10"></textarea>-->
-      <el-button type="primary"  @click="submitMoment">保存</el-button>
-      <button type="button" @click="getValue"> 获取内容</button>
+    <div class="page-wrapper">
+      <div class="page-body">
+        <div class="container-xl">
+          <div id="vditor"></div>
+          <button type="button" @click="saveMoment()" class="btn btn-primary">保存</button>
+        </div>
+      </div>
     </div>
-<!--    <el-form ref="form" :model="moment" onsubmit="return false">-->
-<!--      <el-form-item>-->
-<!--        <el-input id="editor" type="textarea" v-model="moment.content"></el-input>-->
-<!--      </el-form-item>-->
-<!--      <el-form-item label="评论权限">-->
-<!--        <el-switch-->
-<!--          v-model="moment.allowComment">-->
-<!--        </el-switch>-->
-<!--      </el-form-item>-->
-<!--      <el-form-item label="是否私人">-->
-<!--        <el-switch v-model="moment.private">-->
-<!--        </el-switch>-->
-<!--      </el-form-item>-->
-<!--      <el-button type="primary"  @click="submitMoment">保存</el-button>-->
-<!--    </el-form>-->
 </template>
 
 <script>
