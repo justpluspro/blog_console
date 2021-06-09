@@ -88,6 +88,12 @@ const routes = [
         path: '/config/index',
         name: 'Config',
         component: Config
+      },
+      {
+        // 配置列表
+        path: '/template/index',
+        name: 'Template',
+        component: () => import('../views/template/Template')
       }
     ]
   },
@@ -101,8 +107,7 @@ const routes = [
     // 其他页面
     path: '*',
     name: '404',
-    component: Error,
-    redirect: Login
+    component: Error
   }
 ]
 

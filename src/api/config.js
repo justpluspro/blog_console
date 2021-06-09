@@ -5,9 +5,9 @@ import httpClient from '../util/http'
  * @param params params
  * @returns Promise
  */
-export function getTagList (params) {
+export function findAll (params) {
   return httpClient({
-    url: '/api/tags',
+    url: '/api/configs',
     method: 'get',
     params: params
   })
@@ -17,9 +17,9 @@ export function getTagList (params) {
  * @param params params
  * @returns Promise
  */
-export function saveTag (params) {
+export function saveConfig (params) {
   return httpClient({
-    url: '/api/tag',
+    url: '/api/config',
     method: 'post',
     headers: {
       'Content-Type': 'application/json;charset=utf8'
@@ -28,26 +28,15 @@ export function saveTag (params) {
 }
 
 /**
- * 删除标签
- * @param id id
- * @returns Promise
- */
-export function deleteTag (id) {
-  return httpClient({
-    url: `/api/tag/${id}`,
-    method: 'delete'
-  })
-}
-/**
  * 更新标签
  * @param params params
  * @returns Promise
  */
-export function updateTag (params) {
+export function updateConfig (params) {
   return httpClient({
-    url: `/api/tag/${params.id}`,
+    url: '/api/config',
     method: 'put',
-    params: params,
+    data: JSON.stringify(params),
     headers: {
       'Content-Type': 'application/json;charset=utf8'
     }
