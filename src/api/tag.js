@@ -21,6 +21,7 @@ export function saveTag (params) {
   return httpClient({
     url: '/api/tag',
     method: 'post',
+    data: JSON.stringify(params),
     headers: {
       'Content-Type': 'application/json;charset=utf8'
     }
@@ -47,7 +48,7 @@ export function updateTag (params) {
   return httpClient({
     url: `/api/tag/${params.id}`,
     method: 'put',
-    params: params,
+    data: JSON.stringify(params),
     headers: {
       'Content-Type': 'application/json;charset=utf8'
     }
