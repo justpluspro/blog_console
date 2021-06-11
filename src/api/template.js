@@ -18,6 +18,7 @@ export function saveTemplate (params) {
   return httpClient({
     url: '/api/template',
     method: 'post',
+    data: JSON.stringify(params),
     headers: {
       'Content-Type': 'application/json;charset=utf8'
     }
@@ -35,6 +36,9 @@ export function updateTemplate (params) {
   return httpClient({
     url: `/api/template/${params.id}`,
     method: 'put',
-    data: params
+    data: JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json;charset=utf8'
+    }
   })
 }

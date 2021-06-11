@@ -65,6 +65,14 @@
                 </router-link>
               </li>
               <li class="nav-item">
+                <router-link tag="a" to="/blackip/index" class="nav-link">
+                  <span class="nav-link-title">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                      黑名单
+                    </span>
+                </router-link>
+              </li>
+              <li class="nav-item">
                 <router-link tag="a" to="/config/index" class="nav-link">
                   <span class="nav-link-title">
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
@@ -98,11 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-menu-item {
-  margin-right: 16px !important;
-  padding: 0 !important;
-}
-.el-menu {
-  border-bottom: none !important;
+.router-link-active {
+  color: blue;
 }
 </style>

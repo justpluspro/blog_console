@@ -12,7 +12,10 @@ export function saveMoment (moment) {
   return httpClient({
     url: '/api/moment',
     method: 'post',
-    data: moment
+    data: JSON.stringify(moment),
+    headers: {
+      'Content-Type': 'application/json;charset=utf8'
+    }
   })
 }
 

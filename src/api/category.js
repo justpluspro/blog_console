@@ -11,6 +11,7 @@ export function saveCategory (params) {
   return httpClient({
     url: '/api/category',
     method: 'post',
+    data: JSON.stringify(params),
     headers: {
       'Content-Type': 'application/json;charset=utf8'
     }

@@ -1,18 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Moments from '../views/moment/Moments'
 import Moment from '../views/moment/Moment'
-import Articles from '../views/article/Articles'
-import Tags from '../views/tag/Tags'
-import Categories from '../views/category/Categories'
-import BlackIps from '../views/blackip/BlackIps'
-import Login from '../views/Login.vue'
-import Files from '../views/files/Files'
-import Config from '../views/configs/Config'
 import Console from '../views/Console'
 import Error from '../views/404'
-import NewArticle from '../views/article/NewArticle'
-import Comments from '../views/comment/Comments'
 import { getToken } from '../util/cookie'
 import MomentEdit from '../views/moment/MomentEdit'
 
@@ -28,31 +18,37 @@ const routes = [
         // 文章列表
         path: '/article/index',
         name: 'Articles',
-        component: Articles
+        component: () => import('../views/article/Articles')
       },
       {
         // 创建文章
         path: '/article/create',
-        name: 'NewArticle',
-        component: NewArticle
+        name: 'Article',
+        component: () => import('../views/article/Article')
+      },
+      {
+        // 修改文章
+        path: '/article/:id/edit',
+        name: 'Article',
+        component: () => import('../views/article/Article')
       },
       {
         // 标签列表
         path: '/tag/index',
         name: 'Tags',
-        component: Tags
+        component: () => import('../views/tag/Tags')
       },
       {
         // 动态列表
         path: '/moment/index',
         name: 'Moments',
-        component: Moments
+        component: () => import('../views/moment/Moments')
       },
       {
         // 评论列表
         path: '/comment/index',
         name: 'Comments',
-        component: Comments
+        component: () => import('../views/comment/Comments')
       },
       {
         // 编辑动态
@@ -70,25 +66,25 @@ const routes = [
         // 分类列表
         path: '/category/index',
         name: 'Categories',
-        component: Categories
+        component: () => import('../views/category/Categories')
       },
       {
         // 文件列表
         path: '/file/index',
         name: 'Files',
-        component: Files
+        component: () => import('../views/files/Files')
       },
       {
         // 黑名单列表
         path: '/blackip/index',
         name: 'BlackIps',
-        component: BlackIps
+        component: () => import('../views/blackip/BlackIps')
       },
       {
         // 配置列表
         path: '/config/index',
         name: 'Config',
-        component: Config
+        component: () => import('../views/configs/Config')
       },
       {
         // 配置列表
@@ -102,7 +98,7 @@ const routes = [
     // 登录页面
     path: '/login',
     name: 'Login',
-    component: Login
+    component: () => import('../views/Login')
   },
   {
     // 其他页面
