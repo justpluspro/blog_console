@@ -22,6 +22,7 @@ const routes = [
   {
     path: '/console',
     component: Console,
+    redirect: '/article/index',
     children: [
       {
         // 文章列表
