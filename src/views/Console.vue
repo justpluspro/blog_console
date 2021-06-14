@@ -94,13 +94,9 @@ export default {
   name: 'Console',
   data () {
     return {
-      activeIndex: '/article/index'
     }
   },
   methods: {
-    handleSelect (key, keyPath) {
-      this.activeIndex = keyPath
-    }
   }
 }
 </script>
