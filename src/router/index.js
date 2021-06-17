@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Moment from '../views/moment/Moment'
 import Console from '../views/Console'
 import Error from '../views/404'
 import { getToken } from '../util/cookie'
-import MomentEdit from '../views/moment/MomentEdit'
 
 Vue.use(VueRouter)
 
@@ -53,14 +51,14 @@ const routes = [
       {
         // 编辑动态
         path: '/moment/:id/edit',
-        name: 'MomentEdit',
-        component: MomentEdit
+        name: 'Moment',
+        component: () => import('../views/moment/Moment')
       },
       {
         // 创建动态
         path: '/moment/create',
         name: 'Moment',
-        component: Moment
+        component: () => import('../views/moment/Moment')
       },
       {
         // 分类列表
