@@ -19,30 +19,39 @@
           <div class="table-responsive">
             <table class="table table-vcenter table-bordered">
               <thead>
-              <tr>
-                <th>序号</th>
-                <th>标签名称</th>
-                <th>创建时间</th>
-                <th>操作</th>
-              </tr>
+                <tr>
+                  <th>序号</th>
+                  <th>标签名称</th>
+                  <th>创建时间</th>
+                  <th>操作</th>
+                </tr>
               </thead>
               <tbody>
-              <tr v-for="tag in datalist" :key="tag.id">
-                <td v-text="tag.id"></td>
-                <td v-text="tag.name"></td>
-                <td v-text="tag.createAt"></td>
-                <td>
-                  <a class="text-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                     @click="handleEdit(tag)" href="javascript:void(0)">编辑</a>
-                  <a class="text-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-danger"
-                     @click="deleteTagModal(tag.id)" href="javascript:void(0);">
-                    删除
-                  </a>
-                </td>
-              </tr>
+                <tr v-for="tag in datalist" :key="tag.id">
+                  <td v-text="tag.id"></td>
+                  <td v-text="tag.name"></td>
+                  <td v-text="tag.createAt"></td>
+                  <td>
+                    <a class="text-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                       @click="handleEdit(tag)" href="javascript:void(0)">编辑</a>
+                    <a class="text-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-danger"
+                       @click="deleteTagModal(tag.id)" href="javascript:void(0);">
+                      删除
+                    </a>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="container-xl">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" v-bind:class="page === queryParam.page ? 'active': ''" v-for="(page, index) in this.totalPage" :key="index">
+                <a class="page-link" href="javascript:void(0);" @click="toPage(page)" v-text="page">1</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
       <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static"
@@ -104,14 +113,15 @@ export default {
   data () {
     return {
       queryParam: {
-        query: ''
+        query: '',
+        page: 1
       },
       tag: {
         id: '',
         name: ''
       },
       datalist: [],
-      totalRows: 0,
+      totalPage: 0,
       deleteId: ''
     }
   },
@@ -126,6 +136,7 @@ export default {
       getTagList(this.queryParam).then(res => {
         this.datalist = res.data
         this.totalPage = res.totalPage
+        this.queryParam.page = res.page
       }).catch(error => {
         console.log(error)
       })
@@ -159,7 +170,8 @@ export default {
       })
     },
     toPage (obj) {
-      console.log(obj)
+      this.queryParam.page = obj
+      this.findPage()
     }
   }
 }
