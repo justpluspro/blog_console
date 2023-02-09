@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <link rel="stylesheet" href="../static/css/app.css">
-    <link rel="stylesheet" href="../static/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/bootstrap-4.6.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/markdown/github-markdown.css">
     <style>
         .menu{background:#fff; border:1px #32c6c6 solid; border-radius:4px; position:fixed;}
@@ -14,33 +14,40 @@
     </style>
 </head>
 <body>
-    <div role="navigation" class="navbar navbar-default">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <strong><a class="navbar-brand text-primary" href="#">白月黑羽</a></strong>
-            </div>
+<header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <div class="container">
+        <a class="navbar-brand" href="#">白月黑羽</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Java</a></li>
-                    <li><a href="#">Python基础</a></li>
-                    <li><a href="#">Python进阶</a></li>
-                    <li><a href="#">Qt图形界面</a></li>
-                    <li><a href="#">自动化测试</a></li>
-                    <li><a href="#">性能测试</a></li>
-                    <li><a href="#">HTML/CSS</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Java <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Python教程</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Qt图形界面</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">自动化测试</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">性能测试</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">HTML/CSS</a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
+</header>
+
     <div class="container">
         <div class="row">
         <div class="col-lg-10" style="border-right: 1px solid #eeeeee;">
@@ -161,7 +168,7 @@ Alt-H2
 
     <!-- 引入 jquery -->
     <script src="../static/jquery/jquery.min.js"></script>
-    <script src="../static/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../static/bootstrap-4.6.2-dist/js/bootstrap.bundle.js"></script>
     <script>
         $(document).ready(function(e){
             $('#article-post-content').children().each(function(index, element) {
