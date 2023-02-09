@@ -6,11 +6,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <link rel="stylesheet" href="../static/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <style>
+        .menu{background:#fff; border:1px #32c6c6 solid; border-radius:4px; position:fixed;}
+        .menu a{width:100%; display:inline-block;}
+
+        html::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: rgb(179, 177, 177);
+            border-radius: 10px;
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: rgb(136, 136, 136);
+            border-radius: 10px;
+        }
+
+        html::-webkit-scrollbar-thumb:hover {
+            background: rgb(100, 100, 100);
+            border-radius: 10px;
+        }
+
+        html::-webkit-scrollbar-thumb:active {
+            background: rgb(68, 68, 68);
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>你好，世界</h1>
+    <div role="navigation" class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <strong><a class="navbar-brand text-primary" href="#">白月黑羽</a></strong>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Python基础</a></li>
+                    <li><a href="#">Python进阶</a></li>
+                    <li><a href="#">Qt图形界面</a></li>
+                    <li><a href="#">自动化测试</a></li>
+                    <li><a href="#">性能测试</a></li>
+                    <li><a href="#">HTML/CSS</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <div class="container">
+        <div class="col-lg-10" style="border-right: 1px solid #eeeeee;">
+            <div class="article-post">
+                <h2 class="article-post-title">Sample blog post</h2>
+                <p class="article-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+                <div id="article-post-content">
+                    <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+                    <hr>
+                    <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+                    <blockquote>
+                        <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    </blockquote>
+                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    <h2>二级标题一</h2>
+                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <h3>三级标题一</h3>
+                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                    <pre><code>Example code block</code></pre>
+                    <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+                    <h3>三级标题二</h3>
+                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <ul>
+                        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
+                        <li>Donec id elit non mi porta gravida at eget metus.</li>
+                        <li>Nulla vitae elit libero, a pharetra augue.</li>
+                    </ul>
+                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
+                    <ol>
+                        <li>Vestibulum id ligula porta felis euismod semper.</li>
+                        <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
+                        <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
+                    </ol>
+                    <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
+
+                    <h2 class="blog-post-title">Python交互式命令行</h2>
+                    <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
+
+                    <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+                    <blockquote>
+                        <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    </blockquote>
+                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+
+                    <h2 class="blog-post-title">New feature</h2>
+                    <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
+
+                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <ul>
+                        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
+                        <li>Donec id elit non mi porta gravida at eget metus.</li>
+                        <li>Nulla vitae elit libero, a pharetra augue.</li>
+                    </ul>
+                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
+                </div>
+            </div><!-- /.blog-post -->
+        </div>
+        <div class="col-lg-2">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                目录
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <ul class="list-unstyled" style="padding-left: 16px; padding-right: 16px;">
+                            <li><a href="">菜单1</a></li>
+                            <li><a href="">菜单2</a></li>
+                            <li><a href="">菜单3</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                目录2
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <ul class="list-unstyled">
+                            <li><a href="">菜单1</a> </li>
+                            <li><a href="">菜单2</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="h5" style="padding-left: 16px; padding-right: 16px;"><strong>本文目录</strong></div>
+                <ul class="list-unstyled">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <!-- 引入 jquery -->
     <script src="../static/jquery/jquery.min.js"></script>
     <script src="../static/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(e){
+            $('#article-post-content').children().each(function(index, element) {
+                let tagName = $(this).get(0).tagName;
+                console.log(tagName)
+                if(['H1', 'H2', 'H3', 'H4'].includes(tagName)){
+                    let contentH=$(this).html();//获取内容
+                    let markid="mark-"+tagName+"-"+index.toString();
+                    $(this).attr("id",markid);//为当前h标签设置id
+                    let spaceNum =  "";
+                    if (tagName === 'H1') {
+                        spaceNum =  "";
+                    } else if (tagName === 'H2') {
+                        spaceNum =  "1.5";
+                    }  else if (tagName === 'H3') {
+                        spaceNum =  "3";
+                    } else if (tagName === 'H4') {
+                        spaceNum =  "4.5";
+                    } else if (tagName === 'H5') {
+                        spaceNum =  "6";
+                    } else if (tagName === 'H6') {
+                        spaceNum =  "7.5";
+                    }
+                    spaceNum+="em";
+                    //在目标DIV中添加内容
+                    $(".menu ul").append("<li><a href='#"+markid+"' style='text-indent:"+spaceNum+"'>"+contentH+"</a></li>");
+                }
+            })
+
+        })
+    </script>
 </body>
 </html>
