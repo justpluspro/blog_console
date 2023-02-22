@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../static/bootstrap-4.6.2-dist/css/bootstrap.min.css">
+    <style>
+        .tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: .5rem;
+        }
+        .bg_gray {
+            background: #eeeeee;
+        }
+        .h_title:hover {
+            color: #3e71f6 !important;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">主页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/moments">动态</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/console/articles">控制台</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xl-8">
+                <div class="mb-4 border-bottom">
+                    <div class="h5 text-truncate pb-2 pt-1">
+                        <a class="text-decoration-none text-dark h_title" href="#">【和ChatGPT对话】帮助新手批量提取图片文字信息到文件</a>
+                    </div>
+                    <p class="text-truncate text-black-50 small">今天的另外一个案例是模拟有一定编程基础（新新手）的电脑工作者，让 ChatGPT 处理一些图片数据，具体任务是帮助识别学生缴...</p>
+                    <div class="d-flex">
+                        <div class="d-flex flex-column">
+                            <div>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">JVM</a>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">java</a>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">面试</a>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">synchorized</a>
+                            </div>
+                            <div class="mt-auto pb-3">
+                                <a href="#" class="tag bg-success text-decoration-none text-white">精选</a>
+                                <a href="#" class="tag bg-success text-decoration-none text-white">原创</a>
+                                <span class="small text-black-50">175阅读</span>
+                                <span class="small text-black-50">4小时前</span>
+                            </div>
+                        </div>
+                        <div class="ml-auto p-3" style="height: 110px !important;">
+                            <a href="javascript:void(0)">
+                                <img class="img-responsive rounded" style="height: 70px; width: 116px;"
+                                 src="../static/image/Snipaste_2022-10-30_20-55-34.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4 border-bottom">
+                    <div class="h5 text-truncate pb-2 pt-1">
+                        <a class="text-decoration-none text-dark h_title" href="#">【和ChatGPT对话】帮助新手批量提取图片文字信息到文件</a>
+                    </div>
+                    <p class="text-truncate text-black-50 small">今天的另外一个案例是模拟有一定编程基础（新新手）的电脑工作者，让 ChatGPT 处理一些图片数据，具体任务是帮助识别学生缴...</p>
+                    <div class="d-flex">
+                        <div class="d-flex flex-column">
+                            <div class="mt-auto pb-3">
+                                <a href="#" class="tag bg-success text-decoration-none text-white">精选</a>
+                                <a href="#" class="tag bg-success text-decoration-none text-white">原创</a>
+                                <span class="small text-black-50">175阅读</span>
+                                <span class="small text-black-50">4小时前</span>
+                            </div>
+                        </div>
+<!--                        <div class="ml-auto p-3" style="height: 110px !important;">-->
+<!--                            -->
+<!--                        </div>-->
+                    </div>
+                </div>
+                <div class="mb-4 border-bottom">
+                    <div class="h5 text-truncate pb-2 pt-1">
+                        <a class="text-decoration-none text-dark h_title" href="#">【和ChatGPT对话】帮助新手批量提取图片文字信息到文件</a>
+                    </div>
+                    <p class="text-truncate text-black-50 small">今天的另外一个案例是模拟有一定编程基础（新新手）的电脑工作者，让 ChatGPT 处理一些图片数据，具体任务是帮助识别学生缴...</p>
+                    <div class="d-flex">
+                        <div class="d-flex flex-column">
+                            <div>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">JVM</a>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">java</a>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">面试</a>
+                                <a href="#" class="tag bg_gray text-decoration-none text-dark">synchorized</a>
+                            </div>
+                            <div class="mt-auto pb-3">
+                                <a href="#" class="tag bg-success text-decoration-none text-white">精选</a>
+                                <a href="#" class="tag bg-success text-decoration-none text-white">原创</a>
+                                <span class="small text-black-50">175阅读</span>
+                                <span class="small text-black-50">4小时前</span>
+                            </div>
+                        </div>
+<!--                        <div class="ml-auto p-3" style="height: 110px !important;">-->
+<!--                            <a href="javascript:void(0)">-->
+<!--                                <img class="img-responsive rounded" style="height: 70px; width: 116px;"-->
+<!--                                     src="../static/image/Snipaste_2022-10-30_20-55-34.png">-->
+<!--                            </a>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+                <div class="mb-4 border-bottom">
+                    <div class="h5 text-truncate pb-3 pt-1">
+                        <a class="text-decoration-none  text-dark" href="#">【和ChatGPT对话】帮助新手批量提取图片文字信息到文件帮助新手批量提取图片文字信息到文件帮助新手批量提取图片文字信息到文件</a>
+                    </div>
+                    <div class="text-truncate">今天的另外一个案例是模拟有一定编程基础（新新手）的电脑工作者，让 ChatGPT 处理一些图片数据，具体任务是帮助识别学生缴...</div>
+                    <div class="d-flex">
+                        <div class="d-flex flex-column">
+                            <div>
+                                <span class="badge bg-light">ChatGPT</span>
+                                <span class="badge bg-light">Python</span>
+                            </div>
+                            <div class="mt-auto pb-3">
+                                <span class="badge bg-light">ChatGPT</span>
+                                <span class="badge bg-light">Python</span>
+                            </div>
+                        </div>
+                        <div class="ml-auto p-3" style="height: 110px !important;">
+<!--                            <a href="javascript:void(0)">-->
+<!--                                <img class="img-responsive rounded" style="height: 70px; width: 116px;"-->
+<!--                                     src="../static/image/Snipaste_2022-10-30_20-55-34.png">-->
+<!--                            </a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xl-4">
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script type="text/javascript" src="../static/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../static/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js" ></script>
+
+
+</body>
+</html>

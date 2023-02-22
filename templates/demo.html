@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/bootstrap-4.6.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/app.css">
+    <link rel="stylesheet" href="../static/fontawesome/all.min.css">
+    <style>
+        .tag {
+            padding: 4px 8px;
+            margin-right: 8px;
+            border-radius: 4px;
+        }
+        .tag_bg_normal {
+            background-color: #eeeeee;
+        }
+        .tag_bg_repeat {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>标签输入</h4>
+            <div class="form-inline">
+                <div id="tagContainer"></div>
+                <input id="tag" class="form-control" type="text">
+                <button type="button" id="getTag">获取标签</button>
+            </div>
+            <div id="showPanel"></div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/jquery/jquery.min.js"></script>
+<script src="../static/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+<script src="../static/fontawesome/all.min.js"></script>
+<script>
+    let tags = []
+    $('#tag').keypress(function(event) {
+        if(event.keyCode === 13){
+            let tagName = $('#tag').val()
+            if(tagName === null || tagName.trim().length === 0) {
+                return
+            }
+            if(tags.length === 5) {
+                $('#tag').val('')
+                return
+            }
+            let tagExists = false
+            tags.map((val, i) => {
+                if(val.name === tagName) {
+                   tagExists = true
+                    console.log(val.id)
+                   $("span[data-id='"+val.id+"']").removeClass('tag_bg_normal')
+                   $('span[data-id="'+val.id+'"]').addClass('tag_bg_repeat')
+                    setTimeout(function(er) {
+                        $("span[data-id='"+val.id+"']").removeClass('tag_bg_repeat')
+                        $('span[data-id="'+val.id+'"]').addClass('tag_bg_normal')
+                    }, 500)
+                }
+            })
+            if(tagExists) {
+                // alert('已经存在了')
+                $('#tag').val('')
+                return
+            }
+
+            let index = new Date().getTime()
+            let html = '<span class="tag tag_bg_normal" data-id="'+index+'">'+tagName+'<i class="fas fa-close ml-2" onclick="remove('+index+')"></i></span>'
+            tags.push({'name': tagName, 'id': index})
+            $('#tagContainer').append(html)
+            $('#tag').val('')
+        }
+    })
+    $('#getTag').click(function(){
+        alert(JSON.stringify(tags))
+    })
+
+    $('#tag').on('input',(function() {
+        console.log('触发')
+        $('#showPanel').text(JSON.stringify(tags))
+    }))
+
+    function remove(id) {
+        console.log('remove before: ', tags)
+        tags.map((val, i) => {
+            if(val.id === id) {
+                tags.splice(i, 1)
+                $('span[data-id="'+id+'"]').remove()
+            }
+        })
+        console.log('remove after: ', tags)
+    }
+</script>
+</body>
+</html>
